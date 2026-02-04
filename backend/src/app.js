@@ -1,9 +1,15 @@
 import express from "express";
-import routes from "./routes/index.js";
+import userRoutes from "./routes/user.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
 app.use(express.json()); // JSON data accept
-app.use("/api", routes); // all routes
+
+// user Register
+app.use("/api/users", userRoutes);
+
+// login for all 
+app.use("/api/auth", authRoutes);
 
 export default app;
