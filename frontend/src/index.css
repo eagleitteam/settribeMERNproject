@@ -1,68 +1,79 @@
+/* ========== CSS VARIABLES (Theme System) ========== */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --primary-color: #4e73df;
+  --secondary-color: #858796;
+  --bg-light: #e8acf1;
+  --bg-dark: #4b097b;
+  --white: #ffffff;
+  --offwhite: #fbf9f7;
+  --danger: #e74a3b;
+  --success: #1cc88a;
+  --warning: #f6c23e;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 80px;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --transition: all 0.3s ease;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* ========== GLOBAL RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--offwhite);
+  overflow-x: hidden;
+}
+
+/* Layout */
+.main-wrapper {
   display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* .content-wrapper {
+  flex: 1;
+  transition: var(--transition);
+  padding: 20px;
+} */
+
+/* Right Side Layout */
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Smooth Animations */
+.smooth {
+  transition: var(--transition);
 }
 
-@media (prefers-color-scheme: light) {
+.content-wrapper {
+  flex: 1;
+  transition: var(--transition);
+  /* padding: 20px; */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --sidebar-width: 200px;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -250px;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .sidebar.active {
+    left: 0;
   }
 }

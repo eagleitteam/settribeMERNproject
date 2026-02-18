@@ -1,0 +1,99 @@
+/* Background */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #1e3c72, #2a5298);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-header h4 {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #212529;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
+}
+
+/* Input Group */
+.input-group-text {
+  background: #f1f3f5;
+  border-radius: 8px 0 0 8px;
+  font-weight: 500;
+}
+
+.password-toggle {
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Forgot */
+.forgot-password {
+  font-size: 14px;
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.login-btn {
+  height: 45px;
+  border-radius: 8px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(13, 110, 253, 0.4);
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 22px;
+  }
+}

@@ -1,15 +1,21 @@
 import express from "express";
+import cors from "cors";
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 
-const app = express();
+const app = express(); // ✅ FIRST create app
+
+// ✅ THEN middlewares
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 app.use(express.json()); // JSON data accept
 
-// user Register
+// Routes
 app.use("/api/users", userRoutes);
-
-// login for all 
 app.use("/api/auth", authRoutes);
 
 export default app;
