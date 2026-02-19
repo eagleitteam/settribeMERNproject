@@ -69,10 +69,17 @@ const Users = () => {
      EDIT USER
   ========================== */
   const handleEdit = (user) => {
-    setEditUser(user);
-    setFormData(user);
-    setShowModal(true);
-  };
+  setEditUser(user);
+  setFormData({
+    name: user.name,
+    email: user.email,
+    mobile: user.mobile,
+    role: user.role,
+    status: user.status,
+  });
+  setShowModal(true);
+};
+
 
   /* ==========================
      SAVE (ADD / UPDATE)
@@ -95,15 +102,16 @@ const Users = () => {
      DELETE USER
   ========================== */
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure?")) return;
+  if (!window.confirm("Are you sure you want to delete this user?")) return;
 
-    try {
-      await axios.delete(`${API_URL}/${id}`);
-      fetchUsers();
-    } catch (err) {
-      console.error("Delete error", err);
-    }
-  };
+  try {
+    await axios.delete(`${API_URL}/${id}`);
+    fetchUsers();
+  } catch (err) {
+    console.error("Delete error", err.response || err.message);
+  }
+};
+
 
   return (
     <Container fluid className="p-4">
