@@ -1,7 +1,7 @@
 const ROLES = {
-  COLLECTOR: 0,
-  ORGANISER: 1,
-  EMPLOYEE: 2,
+  HonCollector: 0,
+  Organiser: 1,
+  HODs: 2,
 };
 
 

@@ -2,19 +2,19 @@ import ROLES from "./roles.js";
 import PERMISSIONS from "./permissions.js";
 
 const ROLE_PERMISSIONS = {
-  [ROLES.ORGANISER]: [
+  [ROLES.Organiser]: [
     PERMISSIONS.READ,
     PERMISSIONS.CREATE,
     PERMISSIONS.UPDATE,
     PERMISSIONS.DELETE, // Full access
   ],
 
-  [ROLES.COLLECTOR]: [
+  [ROLES.HonCollector]: [
     PERMISSIONS.READ,
     PERMISSIONS.CREATE,
   ],
 
-  [ROLES.EMPLOYEE]: [
+  [ROLES.HODs]: [
     PERMISSIONS.READ,
   ],
 };

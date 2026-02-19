@@ -32,6 +32,13 @@ const Sidebar = ({ isOpen }) => {
           <span className={`menu-text ${!isOpen && "hide"}`}>Tasks</span>
           </NavLink>
         </li>
+
+        <li>
+          <NavLink to="/adduser" className="menu-link">
+          <FaCheckSquare className="icon" />
+          <span className={`menu-text ${!isOpen && "hide"}`}>Add User</span>
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
     enum: Object.values(ROLES),
     required: true,
   },
+
+  status: {
+    type: String,
+    required: true,
+  }
 },
   { timestamps: true }
 );

@@ -1,0 +1,57 @@
+.users-page {
+  padding: 20px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background: #0d6efd;
+  color: white;
+}
+
+/* Drawer */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 360px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+  transition: right 0.4s ease;
+  z-index: 1000;
+}
+
+.drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+.drawer-body {
+  padding: 15px;
+}

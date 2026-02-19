@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./login.css";
 
 const Login = () => {
@@ -11,7 +12,6 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +20,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
 
     try {
@@ -29,20 +28,21 @@ const Login = () => {
         formData
       );
 
-      const { token, user } = res.data;
+      const { token, user, message } = res.data;
 
-      // Save auth data
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // Redirect after login
-      window.location.href = "/";
+      toast.success(message || "Login successful");
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 800);
+
     } catch (err) {
-      if (err.response && err.response.data?.message) {
-        setError(err.response.data.message);
-      } else {
-        setError("Server error. Please try again later.");
-      }
+      toast.error(
+        err.response?.data?.message || "Server error. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
@@ -50,19 +50,12 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <div className="login-card">
-        {/* Header */}
-        <div className="login-header">
-          <h4>Welcome Back</h4>
-          <p>Please login to continue</p>
-        </div>
+      <div className="login-card fade-in">
 
-        {/* Error Message */}
-        {error && (
-          <div className="alert alert-danger py-2 text-center">
-            {error}
-          </div>
-        )}
+        <div className="login-header">
+          <h4>Welcome Back 👋</h4>
+          <p>Sign in to access your dashboard</p>
+        </div>
 
         <form onSubmit={handleSubmit}>
           {/* Role */}
@@ -75,28 +68,27 @@ const Login = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Select Role</option>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-              <option value="guest">Guest</option>
+              <option value="" disabled>
+                Select your role
+              </option>
+              <option value="0"> Hon. Collector</option>
+              <option value="1">Organiser</option>
+              <option value="2">HODs</option>
             </select>
           </div>
 
           {/* Email */}
           <div className="mb-3">
             <label className="form-label">Email Address</label>
-            <div className="input-group">
-              <span className="input-group-text">@</span>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                placeholder="Enter email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              placeholder="you@example.com"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           {/* Password */}
@@ -107,7 +99,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 className="form-control"
                 name="password"
-                placeholder="Enter password"
+                placeholder="••••••••"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -121,20 +113,22 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Forgot */}
           <div className="text-end mb-3">
             <a href="/forgot-password" className="forgot-password">
-              Forgot Password?
+              Forgot password?
             </a>
           </div>
 
-          {/* Button */}
           <button
             type="submit"
             className="btn btn-primary w-100 login-btn"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? (
+              <span className="spinner-border spinner-border-sm"></span>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
       </div>

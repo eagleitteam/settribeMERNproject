@@ -4,19 +4,24 @@ import jwt from "jsonwebtoken";
 
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password ,role } = req.body;
 
-    if (!email || !password) {
+    // 1️⃣ Required field validation
+    if (!email || !password || role === undefined) {
       return res.status(400).json({
-        message: "Email and password are required",
+        message: "Email, password and role are required",
       });
     }
 
-    // 1️⃣ User check
-    const user = await User.findOne({ email });
+    // 2️⃣ Find user by email + role
+    const user = await User.findOne({
+      email,
+      role: Number(role),
+    });
+
     if (!user) {
       return res.status(401).json({
-        message: "Invalid email or password",
+        message: "Invalid credentials",
       });
     }
 

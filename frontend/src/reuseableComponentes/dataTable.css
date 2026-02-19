@@ -1,42 +1,11 @@
-.data-table th,
-.data-table td {
-  white-space: nowrap;
-  font-size: 14px;
-}
-
-.data-table th.sortable {
-  cursor: pointer;
-}
-
-.data-table th.sortable:hover {
-  background-color: #f1f5f9;
-}
-
-.data-table-wrapper .card {
-  border-radius: 12px;
-}
-
-.card-header h5 {
-  margin: 0;
-  font-weight: 600;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .data-table th,
-  .data-table td {
-    font-size: 12px;
-  }
-
-  .card-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .card-header button {
-    width: 100%;
-  }
-}
-
-
+.table th {
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+        .btn-outline-primary,
+        .btn-outline-danger {
+          width: 34px;
+          height: 34px;
+          padding: 0;
+        }

@@ -5,10 +5,10 @@ import bcrypt from "bcryptjs";
 
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, mobile, password, role } = req.body;
+    const { name, email, mobile, password, role ,status} = req.body;
 
     // 1️⃣ Required fields check
-    if (!name || !email || !mobile || !password || role === undefined) {
+    if (!name || !email || !mobile || !password || !status || role === undefined) {
       return res.status(400).json({
         message: "All fields are required",
       });
@@ -39,6 +39,7 @@ export const registerUser = async (req, res) => {
       mobile,
       password: hashedPassword,
       role,
+      status,
     });
 
     res.status(201).json({
@@ -49,11 +50,28 @@ export const registerUser = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        status: user.status,
       },
     });
   } catch (error) {
     res.status(500).json({
       message: error.message,
+    });
+  }
+};
+
+/* =========================
+   GET ALL USERS (TABLE API)
+========================= */
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().sort({ createdAt: -1 });
+
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch users",
+      error: error.message
     });
   }
 };
