@@ -1,11 +1,17 @@
 import ROLE_PERMISSIONS from "../constants/rolepermissionmapping.js";
 
-const checkPermission = (requiredPermission) => {
+const checkPermission = (moduleKey, requiredPermission) => {
   return (req, res, next) => {
-    const userRole = req.user.role; // JWT मधून येतो
-    const permissions = ROLE_PERMISSIONS[userRole] || [];
+    const role = req.user.role;
 
-    if (!permissions.includes(requiredPermission)) {
+    const rolePermissions = ROLE_PERMISSIONS[role];
+    if (!rolePermissions) {
+      return res.status(403).json({ message: "Role not allowed" });
+    }
+
+    const modulePermissions = rolePermissions[moduleKey] || [];
+
+    if (!modulePermissions.includes(requiredPermission)) {
       return res.status(403).json({
         message: "Access Denied",
       });
