@@ -13,7 +13,7 @@ export const SIDEBAR_MENU = [
   },
   {
     label: "Meetings",
-    path: "/meetings",
+    path: "/Meetings",
     icon: FaCalendarAlt,
     module: "MEETINGS",
   },
