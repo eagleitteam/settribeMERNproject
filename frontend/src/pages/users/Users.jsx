@@ -15,7 +15,7 @@ const Users = () => {
     email: "",
     password: "",
     mobile: "",
-    role: "Emp",
+    role: "",
     status: "Active"
   });
 
@@ -84,34 +84,79 @@ const Users = () => {
   /* ==========================
      SAVE (ADD / UPDATE)
   ========================== */
+  // const handleSave = async () => {
+  //   try {
+  //     if (editUser) {
+  //       await axios.put(`${API_URL}/${editUser._id}`, formData);
+  //     } else {
+  //       await axios.post(`${API_URL}/register`, formData);
+  //     }
+  //     setShowModal(false);
+  //     fetchUsers(); // reload table
+  //   } catch (err) {
+  //     console.error("Save error", err);
+  //   }
+  // };
+
+
   const handleSave = async () => {
-    try {
-      if (editUser) {
-        await axios.put(`${API_URL}/${editUser._id}`, formData);
-      } else {
-        await axios.post(`${API_URL}/register`, formData);
-      }
-      setShowModal(false);
-      fetchUsers(); // reload table
-    } catch (err) {
-      console.error("Save error", err);
+  try {
+    const token = localStorage.getItem("token");
+
+    if (editUser) {
+      await axios.put(
+        `${API_URL}/${editUser._id}`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+    } else {
+      await axios.post(
+        `${API_URL}/register`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
     }
-  };
+
+    setShowModal(false);
+    fetchUsers();
+  } catch (err) {
+    console.error("Save error", err.response || err.message);
+  }
+};
 
   /* ==========================
      DELETE USER
   ========================== */
-  const handleDelete = async (id) => {
+//   const handleDelete = async (id) => {
+//   if (!window.confirm("Are you sure you want to delete this user?")) return;
+
+//   try {
+//     await axios.delete(`${API_URL}/${id}`);
+//     fetchUsers();
+//   } catch (err) {
+//     console.error("Delete error", err.response || err.message);
+//   }
+// };
+
+const handleDelete = async (id) => {
   if (!window.confirm("Are you sure you want to delete this user?")) return;
 
   try {
-    await axios.delete(`${API_URL}/${id}`);
+    const token = localStorage.getItem("token");
+
+    await axios.delete(`${API_URL}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
     fetchUsers();
   } catch (err) {
     console.error("Delete error", err.response || err.message);
   }
 };
-
 
   return (
     <Container fluid className="p-4">
