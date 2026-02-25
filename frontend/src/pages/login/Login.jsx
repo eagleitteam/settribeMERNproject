@@ -30,8 +30,11 @@ const Login = () => {
 
       const { token, user, message } = res.data;
 
+      console.log(token);
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("role", user.role);
+
 
       toast.success(message || "Login successful");
 
@@ -71,9 +74,9 @@ const Login = () => {
               <option value="" disabled>
                 Select your role
               </option>
-              <option value="0"> Hon. Collector</option>
-              <option value="1">Organiser</option>
-              <option value="2">HODs</option>
+              <option value="1"> Hon. Collector</option>
+              <option value="2">Organiser</option>
+              <option value="3">HODs</option>
             </select>
           </div>
 

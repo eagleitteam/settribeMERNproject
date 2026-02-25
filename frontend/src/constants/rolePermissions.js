@@ -1,18 +1,43 @@
-// src/constants/rolePermissions.js
-export const ROLE_PERMISSIONS = {
-  2: { // Organiser
-    USERS: ["read", "create", "update", "delete"],
-    REPORTS: ["read", "create"],
-    MEETINGS: ["read", "create"],
-    DASHBOARD: ["read"],
+import MODULES from "./modules.js";
+import PERMISSIONS from "./permissions.js";
+
+const ROLE_PERMISSIONS = {
+  1: { // Hon. Collector
+    [MODULES.DASHBOARD]: [PERMISSIONS.VIEW],
+    [MODULES.USERS]: [PERMISSIONS.VIEW, PERMISSIONS.READ],
+    [MODULES.REPORTS]: [PERMISSIONS.VIEW, PERMISSIONS.READ],
   },
 
-  1: { // HonCollector
-    REPORTS: ["read"],
-    DASHBOARD: ["read"],
+  2: { // Organiser (Admin)
+    [MODULES.DASHBOARD]: [PERMISSIONS.VIEW],
+    [MODULES.USERS]: [
+      PERMISSIONS.VIEW,
+      PERMISSIONS.READ,
+      PERMISSIONS.CREATE,
+      PERMISSIONS.UPDATE,
+      PERMISSIONS.DELETE,
+    ],
+    [MODULES.MEETINGS]: [
+      PERMISSIONS.VIEW,
+      PERMISSIONS.READ,
+      PERMISSIONS.CREATE,
+      PERMISSIONS.UPDATE,
+    ],
+    [MODULES.REPORTS]: [
+      PERMISSIONS.VIEW,
+      PERMISSIONS.READ,
+      PERMISSIONS.CREATE,
+    ],
   },
 
-  3: { // HODs
-    MEETINGS: ["read"],
+  3: { // HOD
+    [MODULES.DASHBOARD]: [PERMISSIONS.VIEW],
+    [MODULES.MEETINGS]: [
+      PERMISSIONS.VIEW,
+      PERMISSIONS.READ,
+      PERMISSIONS.UPDATE,
+    ],
   },
 };
+
+export default ROLE_PERMISSIONS;

@@ -5,10 +5,9 @@ import "./navbar.css";
 const Navbar = ({ toggleSidebar }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
-
   const navigate = useNavigate();
 
-  // 🔹 Read user from localStorage
+  // Read user from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -16,14 +15,14 @@ const Navbar = ({ toggleSidebar }) => {
     }
   }, []);
 
-  // 🔹 Logout
+  // Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/login");
   };
 
-  // 🔹 Role label
+  // Role label
   const getRoleName = (role) => {
     switch (role) {
       case 1:
@@ -43,36 +42,31 @@ const Navbar = ({ toggleSidebar }) => {
         ☰
       </button>
 
-      <div>
-        <h2>Meeting & Task Planner</h2>
-      </div>
+      <h2 className="navbar-title">Meeting & Task Planner</h2>
 
       {user && (
-        <div
-          className="profile-section"
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
+        <div className="profile-section">
+          {/* Profile Image (CLICK ONLY HERE) */}
           <img
             src="https://i.pravatar.cc/40"
             alt="profile"
             className="profile-img"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
           />
 
-          {/* ✅ Name + Role */}
+          {/* Name + Role */}
           <div className="profile-info">
             <span className="profile-name">{user.name}</span>
             <span className="profile-role">{getRoleName(user.role)}</span>
           </div>
 
+          {/* Dropdown */}
           {dropdownOpen && (
             <div className="dropdown-menu-custom">
-              <p><strong>{user.email}</strong></p>
-              <p>Role: {getRoleName(user.role)}</p>
+              <p className="email">{user.email}</p>
+              <p className="role">Role: {getRoleName(user.role)}</p>
               <hr />
-              <button
-                className="dropdown-item text-danger"
-                onClick={handleLogout}
-              >
+              <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
             </div>

@@ -1,0 +1,8 @@
+const MODULES = {
+  USERS: "USERS",
+  MEETINGS: "MEETINGS",
+  REPORTS: "REPORTS",
+  DASHBOARD: "DASHBOARD",
+};
+
+export default MODULES;

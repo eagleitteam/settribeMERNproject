@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
 import { SIDEBAR_MENU } from "../../config/sidebarMenu.js";
-import { hasPermission } from "../../utils/hasPermission.js";
+import hasPermission from "../../utils/hasPermission.js";
 
 const Sidebar = ({ isOpen }) => {
   const user = JSON.parse(localStorage.getItem("user"));
